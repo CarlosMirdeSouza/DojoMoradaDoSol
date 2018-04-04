@@ -4,14 +4,20 @@
 #include <QtGlobal>
 #include <QtDebug>
 
+#include <QDateTime>
+
 #include "classes/imagelabel.h"
 
 extern BancoDados db;
+
+QImage image;
+QString filename;
 
 Cadastro::Cadastro(QWidget *parent) :
     QWidget(parent), ui(new Ui::Cadastro)
 {
     ui->setupUi(this);
+
 }
 
 void Cadastro::on_pushButtonCadastro_clicked()
@@ -37,6 +43,13 @@ void Cadastro::on_pushButtonCadastro_clicked()
     query->bindValue(":profissao", ui->lineEditProfissao->text());
     query->bindValue(":categoria", ui->lineEditCategoria->text());
     qInfo() << "exec: " << query->exec();
+    
+    if (!image.isNull()){
+        filename = "./images/";
+        filename.append(ui->lineEditCpf->text());
+        filename.append(".jpg");
+        image.save(filename);
+    }
 }
 
 void Cadastro::on_pushButtonAdicionarFoto_clicked()
@@ -48,13 +61,11 @@ void Cadastro::on_pushButtonAdicionarFoto_clicked()
     mimeTypeFilters << "image/jpeg" << "image/png";
 
     imageDialog.setMimeTypeFilters(mimeTypeFilters);
-    QString filename;
     if(imageDialog.exec()) {
         QString filename = imageDialog.selectedFiles().first();
         QImageReader imageReader(filename);
-        QImage image = imageReader.read();
+        image = imageReader.read();
         QImage scaled = image.scaled(354, 472, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
-
     }
 }
