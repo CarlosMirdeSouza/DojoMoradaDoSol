@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dojo Morada Do Sol</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QMdiArea" name="mdiAreaMain">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>960</width>
+      <height>640</height>
+     </rect>
+    </property>
+    <property name="activationOrder">
+     <enum>QMdiArea::CreationOrder</enum>
+    </property>
+    <property name="viewMode">
+     <enum>QMdiArea::TabbedView</enum>
+    </property>
+    <property name="documentMode">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuContabilidade">
+    <property name="title">
+     <string>Contabilidade</string>
+    </property>
+    <widget class="QMenu" name="menuItens">
+     <property name="title">
+      <string>Itens</string>
+     </property>
+     <addaction name="actionAdicionar_item"/>
+     <addaction name="actionEliminar_item"/>
+     <addaction name="actionModificar_item"/>
+    </widget>
+    <widget class="QMenu" name="menuMensalidades">
+     <property name="title">
+      <string>Mensalidades</string>
+     </property>
+     <addaction name="actionModificar_valor_da_mensalidade"/>
+    </widget>
+    <widget class="QMenu" name="menuDoa_es">
+     <property name="title">
+      <string>Doações</string>
+     </property>
+     <addaction name="actionAdicionar_doa_ao"/>
+     <addaction name="actionModificar_doa_ao"/>
+     <addaction name="actionEliminar_doa_ao"/>
+    </widget>
+    <addaction name="menuItens"/>
+    <addaction name="menuMensalidades"/>
+    <addaction name="menuDoa_es"/>
+   </widget>
+   <widget class="QMenu" name="menuEventos">
+    <property name="title">
+     <string>Eventos</string>
+    </property>
+    <widget class="QMenu" name="menuEventos_2">
+     <property name="title">
+      <string>Eventos</string>
+     </property>
+     <addaction name="actionAdicionar_evento"/>
+     <addaction name="actionModificar_evento"/>
+     <addaction name="actionEliminar_evento"/>
+    </widget>
+    <addaction name="menuEventos_2"/>
+    <addaction name="actionParticipantes"/>
+   </widget>
+   <addaction name="menuContabilidade"/>
+   <addaction name="menuEventos"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDoa_es">
+   <property name="text">
+    <string>Doações</string>
+   </property>
+  </action>
+  <action name="actionParticipantes">
+   <property name="text">
+    <string>Participantes</string>
+   </property>
+  </action>
+  <action name="actionAdicionar_item">
+   <property name="text">
+    <string>Adicionar item</string>
+   </property>
+  </action>
+  <action name="actionEliminar_item">
+   <property name="text">
+    <string>Eliminar item</string>
+   </property>
+  </action>
+  <action name="actionModificar_item">
+   <property name="text">
+    <string>Modificar item</string>
+   </property>
+  </action>
+  <action name="actionModificar_valor_da_mensalidade">
+   <property name="text">
+    <string>Modificar valor da mensalidade</string>
+   </property>
+  </action>
+  <action name="actionAdicionar_doa_ao">
+   <property name="text">
+    <string>Adicionar doaçao</string>
+   </property>
+  </action>
+  <action name="actionModificar_doa_ao">
+   <property name="text">
+    <string>Modificar doaçao</string>
+   </property>
+  </action>
+  <action name="actionEliminar_doa_ao">
+   <property name="text">
+    <string>Eliminar doaçao</string>
+   </property>
+  </action>
+  <action name="actionAdicionar_evento">
+   <property name="text">
+    <string>Adicionar evento</string>
+   </property>
+  </action>
+  <action name="actionModificar_evento">
+   <property name="text">
+    <string>Modificar evento</string>
+   </property>
+  </action>
+  <action name="actionEliminar_evento">
+   <property name="text">
+    <string>Eliminar evento</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Eventos</class>
+ <widget class="QWidget" name="Eventos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Eventos</string>
+  </property>
+  <property name="locale">
+   <locale language="Portuguese" country="Brazil"/>
+  </property>
+  <widget class="QCalendarWidget" name="calendarWidgetEventos">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>341</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="horizontalHeaderFormat">
+    <enum>QCalendarWidget::ShortDayNames</enum>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableViewEventos">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>300</y>
+     <width>941</width>
+     <height>321</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableViewParticipantes">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>10</y>
+     <width>581</width>
+     <height>271</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
