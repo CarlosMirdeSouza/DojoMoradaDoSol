@@ -3,6 +3,10 @@
 
 #include <QSqlRecord>
 
+#include <QImageReader>
+#include <QImage>
+#include <QMenu>
+
 extern BancoDados db;
 
 Pesquisa::Pesquisa(QWidget *parent) :
@@ -54,7 +58,6 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
         db.getTableModel()->setFilter(modalidade);
         ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
-
 	}
 }
 
@@ -108,3 +111,46 @@ void Pesquisa::on_checkBoxDadosMoradia_stateChanged(int arg1)
         }
     }
 }
+
+void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
+{
+    QString cpf = db.getTableModel()->record(index.row()).value("cpf").toString();
+    QString filename("./images/");
+    filename.append(cpf);
+    filename.append(".jpg");
+    qInfo() << filename;
+    QImageReader imageReader(filename);
+    QImage image = imageReader.read();
+    QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
+}
+
+
+#ifndef QT_NO_CONTEXTMENU
+void Pesquisa::contextMenuEvent(QContextMenuEvent *event)
+{
+    QAction cutAct = new QAction(tr("Cu&t"), this);
+    cutAct.setShortcuts(QKeySequence::Cut);
+    cutAct.setStatusTip(tr("Cut the current selection's contents to the "
+                            "clipboard"));
+    connect(cutAct, &QAction::triggered, this, &MainWindow::cut);
+
+    QAction copyAct = new QAction(tr("&Copy"), this);
+    copyAct.setShortcuts(QKeySequence::Copy);
+    copyAct.setStatusTip(tr("Copy the current selection's contents to the "
+                             "clipboard"));
+    connect(copyAct, &QAction::triggered, this, &MainWindow::copy);
+
+    QAction pasteAct = new QAction(tr("&Paste"), this);
+    pasteAct.setShortcuts(QKeySequence::Paste);
+    pasteAct.setStatusTip(tr("Paste the clipboard's contents into the current "
+                              "selection"));
+    connect(pasteAct, &QAction::triggered, this, &MainWindow::paste);
+
+    QMenu menu(this);
+    menu.addAction(cutAct);
+    menu.addAction(copyAct);
+    menu.addAction(pasteAct);
+    menu.exec(event->globalPos());
+}
+#endif // QT_NO_CONTEXTMENU

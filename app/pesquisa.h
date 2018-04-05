@@ -29,6 +29,13 @@ private slots:
 
     void on_checkBoxDadosMoradia_stateChanged(int arg1);
 
+    void on_tableViewPesquisa_clicked(const QModelIndex &index);
+
+protected:
+#ifndef QT_NO_CONTEXTMENU
+    void contextMenuEvent(QContextMenuEvent *event) override;
+#endif // QT_NO_CONTEXTMENU
+
 private:
     Ui::Pesquisa *ui;
 };
