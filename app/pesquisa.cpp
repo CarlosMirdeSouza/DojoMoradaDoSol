@@ -14,6 +14,8 @@ extern BancoDados db;
 // TODO: Modificar tamanho tableViewPesquisa e labelImagem
 // TODO: Eliminar botao delete
 
+QString imagename("./images/");
+
 Pesquisa::Pesquisa(QWidget *parent) :
     QWidget(parent), ui(new Ui::Pesquisa)
 {
@@ -113,13 +115,12 @@ void Pesquisa::on_checkBoxDadosMoradia_stateChanged(int arg1)
 void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
 {
     QString cpf = db.getTableModel()->record(index.row()).value("cpf").toString();
-    QString filename("./images/");
-    filename.append(cpf);
-    filename.append(".jpg");
+    imagename.append(cpf);
+    imagename.append(".jpg");
     
-    qInfo() << filename;
+    qInfo() << imagename;
     
-    QImageReader imageReader(filename);
+    QImageReader imageReader(imagename);
     QImage image = imageReader.read();
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     
@@ -130,17 +131,21 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
 #ifndef QT_NO_CONTEXTMENU
 void Pesquisa::contextMenuEvent(QContextMenuEvent *event)
 {
-    QAction *deleteRowAct = new QAction(tr("Apagar aluno"), this);
-    deleteRowAct->setStatusTip(tr("Apaga o aluno e todas as informações dele."));
-    connect(deleteRowAct, &QAction::triggered, this, &Pesquisa::deleteRow);
-
-    QAction *modifyImageAct = new QAction(tr("Modificar imagem do aluno"), this);
-    modifyImageAct->setStatusTip(tr("Modifica a imagem do aluno eliminando a  imagem anterior."));
-    connect(modifyImageAct, &QAction::triggered, this, &Pesquisa::modifyImagem);
-
     QMenu menu(this);
-    menu.addAction(deleteRowAct);
-    menu.addAction(modifyImageAct);
+    if(ui->tableViewPesquisa->underMouse()) {
+        QAction *deleteRowAct = new QAction(tr("Apagar aluno"), this);
+        deleteRowAct->setStatusTip(tr("Apaga o aluno e todas as informações dele."));
+        connect(deleteRowAct, &QAction::triggered, this, &Pesquisa::deleteRow);
+        menu.addAction(deleteRowAct);
+
+    } else if (ui->labelImagem->underMouse()) {
+        QAction *modifyImageAct = new QAction(tr("Modificar imagem do aluno"), this);
+        modifyImageAct->setStatusTip(tr("Modifica a imagem do aluno eliminando a  imagem anterior."));
+        connect(modifyImageAct, &QAction::triggered, this, &Pesquisa::modifyImagem);
+        menu.addAction(modifyImageAct);
+
+    }
+
     menu.exec(event->globalPos());
 }
 #endif // QT_NO_CONTEXTMENU
@@ -150,6 +155,8 @@ void Pesquisa::deleteRow() {
     int selectedRowIndex = ui->tableViewPesquisa->currentIndex().row();
     db.getTableModel()->removeRow(selectedRowIndex);
     db.getTableModel()->submitAll();
+
+    QFile(imagename).remove();
 }
 
 void Pesquisa::modifyImagem() {
