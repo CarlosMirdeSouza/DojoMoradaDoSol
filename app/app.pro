@@ -11,10 +11,7 @@ HEADERS += \
     pesquisa.h \
     contabilidade.h \
     eventos.h \
-    bancodados/bancodados.h \
-    classes/imagelabel.h \
-    classes/pessoa.h \
-    classes/aluno.h
+    bancodados/bancodados.h
 
 SOURCES += \
     main.cpp \
@@ -23,10 +20,7 @@ SOURCES += \
     pesquisa.cpp \
     contabilidade.cpp \
     eventos.cpp \
-    bancodados/bancodados.cpp \
-    classes/imagelabel.cpp \
-    classes/pessoa.cpp \
-    classes/aluno.cpp
+    bancodados/bancodados.cpp
 
 
 FORMS += \
@@ -35,3 +29,8 @@ FORMS += \
     Pesquisa.ui \
     Contabilidade.ui \
     Eventos.ui
+
+DISTFILES +=
+
+RESOURCES += \
+    resources.qrc
