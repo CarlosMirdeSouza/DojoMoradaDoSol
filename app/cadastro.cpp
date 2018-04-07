@@ -55,7 +55,11 @@ void Cadastro::on_pushButtonCadastro_clicked()
     if (filename.compare(":/images/AdicionarImagem.png")) {
         // TODO: Dar um warning pro usuario atraves de um dialogo
     } else if (!image.isNull()){
-        filename = "./images/";
+		if (!QDir("images").exists()) {
+            QDir().mkdir("images");
+		}
+		
+        filename = "images/";
         filename.append(ui->lineEditCpf->text());
         filename.append(".jpg");
         image.save(filename);
