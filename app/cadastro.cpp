@@ -22,7 +22,8 @@ Cadastro::Cadastro(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QImageReader imageReader(":/images/AdicionarImagem.png");
+    filename = ":/images/AdicionarImagem.png";
+    QImageReader imageReader(filename);
     QImage adicionarImagem = imageReader.read();
     ui->labelImagem->setPixmap(QPixmap::fromImage(adicionarImagem));
 }
@@ -50,8 +51,10 @@ void Cadastro::on_pushButtonCadastro_clicked()
     query->bindValue(":profissao", ui->lineEditProfissao->text());
     query->bindValue(":categoria", ui->lineEditCategoria->text());
     qInfo() << "exec: " << query->exec();
-    
-    if (!image.isNull()){
+
+    if (filename.compare(":/images/AdicionarImagem.png")) {
+        // TODO: Dar um warning pro usuario atraves de um dialogo
+    } else if (!image.isNull()){
         filename = "./images/";
         filename.append(ui->lineEditCpf->text());
         filename.append(".jpg");
