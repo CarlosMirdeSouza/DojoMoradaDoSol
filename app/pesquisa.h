@@ -31,6 +31,7 @@ private slots:
     void modifyImagem();
 
 protected:
+
 #ifndef QT_NO_CONTEXTMENU
     void contextMenuEvent(QContextMenuEvent *event) override;
 #endif // QT_NO_CONTEXTMENU

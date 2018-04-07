@@ -11,6 +11,9 @@
 
 extern BancoDados db;
 
+// TODO: Modificar tamanho tableViewPesquisa e labelImagem
+// TODO: Eliminar botao delete
+
 Pesquisa::Pesquisa(QWidget *parent) :
     QWidget(parent), ui(new Ui::Pesquisa)
 {
@@ -113,10 +116,13 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
     QString filename("./images/");
     filename.append(cpf);
     filename.append(".jpg");
+    
     qInfo() << filename;
+    
     QImageReader imageReader(filename);
     QImage image = imageReader.read();
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    
     ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
 }
 
@@ -128,8 +134,8 @@ void Pesquisa::contextMenuEvent(QContextMenuEvent *event)
     deleteRowAct->setStatusTip(tr("Apaga o aluno e todas as informações dele."));
     connect(deleteRowAct, &QAction::triggered, this, &Pesquisa::deleteRow);
 
-    QAction *modifyImageAct = new QAction(tr("Modificar imagem"), this);
-    modifyImageAct->setStatusTip(tr("Modifica a imagem atual do aluno eliminando a anterior."));
+    QAction *modifyImageAct = new QAction(tr("Modificar imagem do aluno"), this);
+    modifyImageAct->setStatusTip(tr("Modifica a imagem do aluno eliminando a  imagem anterior."));
     connect(modifyImageAct, &QAction::triggered, this, &Pesquisa::modifyImagem);
 
     QMenu menu(this);
@@ -140,11 +146,13 @@ void Pesquisa::contextMenuEvent(QContextMenuEvent *event)
 #endif // QT_NO_CONTEXTMENU
 
 void Pesquisa::deleteRow() {
+	// TODO: Agregar dialogo de confirmação de eliminação
     int selectedRowIndex = ui->tableViewPesquisa->currentIndex().row();
     db.getTableModel()->removeRow(selectedRowIndex);
     db.getTableModel()->submitAll();
 }
 
 void Pesquisa::modifyImagem() {
-
+	// TODO: Modificar imagem apagando a anterior
+	// TODO: Dialogo advertindo que a imagem anterior sera deletada
 }
