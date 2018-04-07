@@ -21,15 +21,14 @@ public slots:
 private slots:
     void on_pushButtonPesquisa_clicked();
 
-    void on_pushButtonDelete_clicked();
-
     void on_checkBoxDadosPessoais_stateChanged(int arg1);
-
     void on_checkBoxDadosContato_stateChanged(int arg1);
-
     void on_checkBoxDadosMoradia_stateChanged(int arg1);
 
     void on_tableViewPesquisa_clicked(const QModelIndex &index);
+
+    void deleteRow();
+    void modifyImagem();
 
 protected:
 #ifndef QT_NO_CONTEXTMENU
