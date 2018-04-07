@@ -14,7 +14,7 @@ extern BancoDados db;
 // TODO: Modificar tamanho tableViewPesquisa e labelImagem
 // TODO: Eliminar botao delete
 
-QString imagename("./images/");
+QString imagename("");
 
 Pesquisa::Pesquisa(QWidget *parent) :
     QWidget(parent), ui(new Ui::Pesquisa)
@@ -115,6 +115,7 @@ void Pesquisa::on_checkBoxDadosMoradia_stateChanged(int arg1)
 void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
 {
     QString cpf = db.getTableModel()->record(index.row()).value("cpf").toString();
+    imagename.append("images/");
     imagename.append(cpf);
     imagename.append(".jpg");
     
@@ -125,6 +126,7 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     
     ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
+    imagename.clear();
 }
 
 
