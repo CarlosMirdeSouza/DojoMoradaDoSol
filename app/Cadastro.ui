@@ -260,7 +260,7 @@
      <item>
       <widget class="QLabel" name="labelCep">
        <property name="text">
-        <string>CEP</string>
+        <string>CEP:</string>
        </property>
       </widget>
      </item>
@@ -280,7 +280,7 @@
      <item>
       <widget class="QLabel" name="labelUf">
        <property name="text">
-        <string>UF</string>
+        <string>UF:</string>
        </property>
       </widget>
      </item>
@@ -408,7 +408,7 @@
     <rect>
      <x>20</x>
      <y>590</y>
-     <width>931</width>
+     <width>981</width>
      <height>41</height>
     </rect>
    </property>
