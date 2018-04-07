@@ -30,7 +30,5 @@ FORMS += \
     Contabilidade.ui \
     Eventos.ui
 
-DISTFILES +=
-
 RESOURCES += \
     resources.qrc

@@ -6,7 +6,11 @@
 
 #include <QDateTime>
 
-#include "classes/imagelabel.h"
+#include <QLabel>
+#include <QImage>
+#include <QImageReader>
+#include <QFileDialog>
+#include <QStringList>
 
 extern BancoDados db;
 
@@ -18,6 +22,9 @@ Cadastro::Cadastro(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QImageReader imageReader(":/images/AdicionarImagem.png");
+    QImage adicionarImagem = imageReader.read();
+    ui->labelImagem->setPixmap(QPixmap::fromImage(adicionarImagem));
 }
 
 void Cadastro::on_pushButtonCadastro_clicked()
