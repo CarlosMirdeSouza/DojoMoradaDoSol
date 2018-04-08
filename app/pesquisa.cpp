@@ -9,6 +9,7 @@
 #include <QAction>
 #include <QContextMenuEvent>
 #include <QMessageBox>
+#include <QFileDialog>
 
 extern BancoDados db;
 
@@ -118,6 +119,8 @@ void Pesquisa::on_checkBoxDadosMoradia_stateChanged(int state)
 void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
 {
     QString cpf = db.getTableModel()->record(index.row()).value("cpf").toString();
+
+    imagename.clear();
     imagename.append("images/");
     imagename.append(cpf);
     imagename.append(".jpg");
@@ -129,7 +132,6 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     
     ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
-    imagename.clear();
 }
 
 
@@ -172,12 +174,44 @@ void Pesquisa::deleteRow() {
             db.getTableModel()->removeRow(selectedRowIndex);
             db.getTableModel()->submitAll();
 
+            db.setTableName("Alunos");
+            ui->tableViewPesquisa->setModel(db.getTableModel());
+            ui->tableViewPesquisa->resizeColumnsToContents();
+
             QFile(imagename).remove();
             break;
     }
 }
 
 void Pesquisa::modifyImagem() {
-	// TODO: Modificar imagem apagando a anterior
-	// TODO: Dialogo advertindo que a imagem anterior sera deletada
+
+    QMessageBox imagemPadraoWarning;
+    imagemPadraoWarning.setText(tr("Ao modificar a imagem a anterior sera deletada"));
+    imagemPadraoWarning.setInformativeText("Tem certeza que quer continuar modificando a imagem?");
+
+    imagemPadraoWarning.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
+    imagemPadraoWarning.setDefaultButton(QMessageBox::Apply);
+    imagemPadraoWarning.setIcon(QMessageBox::Warning);
+
+    int respostaWarning = imagemPadraoWarning.exec();
+    switch(respostaWarning){
+        case QMessageBox::Apply:
+            QFile(imagename).remove();
+            qInfo() << "Imagename in ModifyImage: " << imagename;
+            QFileDialog imageDialog(this);
+            imageDialog.setFileMode(QFileDialog::ExistingFile);
+
+            QStringList mimeTypeFilters;
+            mimeTypeFilters << "image/jpeg" << "image/png";
+
+            imageDialog.setMimeTypeFilters(mimeTypeFilters);
+            if(imageDialog.exec()) {
+                QString newImage = imageDialog.selectedFiles().first();
+                QImageReader imageReader(newImage);
+                QImage image = imageReader.read();
+                QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+                qInfo() << "Save new image: " << scaled.save(imagename);
+            }
+        break;
+    }
 }
