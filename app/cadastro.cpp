@@ -11,6 +11,7 @@
 #include <QImageReader>
 #include <QFileDialog>
 #include <QStringList>
+#include <QMessageBox>
 
 extern BancoDados db;
 
@@ -21,6 +22,7 @@ Cadastro::Cadastro(QWidget *parent) :
     QWidget(parent), ui(new Ui::Cadastro)
 {
     ui->setupUi(this);
+    ui->lineEditOutros->hide();
 
     filename = ":/images/AdicionarImagem.png";
     QImageReader imageReader(filename);
@@ -39,7 +41,11 @@ void Cadastro::on_pushButtonCadastro_clicked()
     query->bindValue(":nome", ui->lineEditNome->text());
     query->bindValue(":rg", ui->lineEditRg->text());
     query->bindValue(":dataNascimento", ui->lineEditDataNascimento->text());
-    query->bindValue(":modalidade", ui->comboBoxModalidade->currentText());
+    if (ui->lineEditOutros->isHidden()) {
+        query->bindValue(":modalidade", ui->comboBoxModalidade->currentText());
+    } else {
+        query->bindValue(":modalidade", ui->lineEditOutros->text());
+    }
     query->bindValue(":email", ui->lineEditEmail->text());
     query->bindValue(":telefonCelular", ui->lineEditTelefoneCelular->text());
     query->bindValue(":telefoneFixo", ui->lineEditTelefoneFixo->text());
@@ -50,10 +56,35 @@ void Cadastro::on_pushButtonCadastro_clicked()
     query->bindValue(":uf", ui->lineEditUf->text());
     query->bindValue(":profissao", ui->lineEditProfissao->text());
     query->bindValue(":categoria", ui->lineEditCategoria->text());
-    qInfo() << "exec: " << query->exec();
 
-    if (filename.compare(":/images/AdicionarImagem.png")) {
-        // TODO: Dar um warning pro usuario atraves de um dialogo
+    qInfo() << filename;
+    if (filename.compare(":/images/AdicionarImagem.png") == 0) {
+        QMessageBox imagemPadraoWarning;
+        imagemPadraoWarning.setText(tr("Nao foi adicionada nenhuma imagem"));
+        imagemPadraoWarning.setInformativeText("Tem certeza que quer continuar com o cadastro?");
+
+        imagemPadraoWarning.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
+        imagemPadraoWarning.setDefaultButton(QMessageBox::Apply);
+        imagemPadraoWarning.setIcon(QMessageBox::Warning);
+
+        int respostaWarning = imagemPadraoWarning.exec();
+        switch(respostaWarning){
+            case QMessageBox::Apply:
+                if (query->exec() == true) {
+                    QMessageBox cadastroSucedido;
+
+                    cadastroSucedido.setText(tr("O cadastro foi efeituado com sucesso"));
+
+                    cadastroSucedido.setStandardButtons(QMessageBox::Ok);
+                    cadastroSucedido.setDefaultButton(QMessageBox::Ok);
+                    cadastroSucedido.setIcon(QMessageBox::Information);
+
+                    cadastroSucedido.exec();
+                }
+                break;
+        }
+
+
     } else if (!image.isNull()){
 		if (!QDir("images").exists()) {
             QDir().mkdir("images");
@@ -63,6 +94,17 @@ void Cadastro::on_pushButtonCadastro_clicked()
         filename.append(ui->lineEditCpf->text());
         filename.append(".jpg");
         image.save(filename);
+        if (query->exec() == true) {
+            QMessageBox cadastroSucedido;
+
+            cadastroSucedido.setText(tr("O cadastro foi efeituado com sucesso"));
+
+            cadastroSucedido.setStandardButtons(QMessageBox::Ok);
+            cadastroSucedido.setDefaultButton(QMessageBox::Ok);
+            cadastroSucedido.setIcon(QMessageBox::Information);
+
+            cadastroSucedido.exec();
+        }
     }
 }
 
@@ -76,10 +118,21 @@ void Cadastro::on_pushButtonAdicionarFoto_clicked()
 
     imageDialog.setMimeTypeFilters(mimeTypeFilters);
     if(imageDialog.exec()) {
-        QString filename = imageDialog.selectedFiles().first();
+        filename = imageDialog.selectedFiles().first();
         QImageReader imageReader(filename);
         image = imageReader.read();
         QImage scaled = image.scaled(354, 472, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
+    }
+}
+
+void Cadastro::on_checkBoxOutros_stateChanged(int state)
+{
+    if (state >= 1) {
+        ui->lineEditOutros->show();
+        ui->comboBoxModalidade->hide();
+    } else {
+        ui->lineEditOutros->hide();
+        ui->comboBoxModalidade->show();
     }
 }
