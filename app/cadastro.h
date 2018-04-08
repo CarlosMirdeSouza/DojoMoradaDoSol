@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButtonAdicionarFoto_clicked();
 
+    void on_checkBoxOutros_stateChanged(int arg1);
+
 private:
     Ui::Cadastro *ui;
 };

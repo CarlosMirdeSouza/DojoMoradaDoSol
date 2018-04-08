@@ -21,6 +21,7 @@ Cadastro::Cadastro(QWidget *parent) :
     QWidget(parent), ui(new Ui::Cadastro)
 {
     ui->setupUi(this);
+    ui->lineEditOutros->hide();
 
     filename = ":/images/AdicionarImagem.png";
     QImageReader imageReader(filename);
@@ -39,7 +40,11 @@ void Cadastro::on_pushButtonCadastro_clicked()
     query->bindValue(":nome", ui->lineEditNome->text());
     query->bindValue(":rg", ui->lineEditRg->text());
     query->bindValue(":dataNascimento", ui->lineEditDataNascimento->text());
-    query->bindValue(":modalidade", ui->comboBoxModalidade->currentText());
+    if (ui->lineEditOutros->isHidden()) {
+        query->bindValue(":modalidade", ui->comboBoxModalidade->currentText());
+    } else {
+        query->bindValue(":modalidade", ui->lineEditOutros->text());
+    }
     query->bindValue(":email", ui->lineEditEmail->text());
     query->bindValue(":telefonCelular", ui->lineEditTelefoneCelular->text());
     query->bindValue(":telefoneFixo", ui->lineEditTelefoneFixo->text());
@@ -81,5 +86,16 @@ void Cadastro::on_pushButtonAdicionarFoto_clicked()
         image = imageReader.read();
         QImage scaled = image.scaled(354, 472, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
+    }
+}
+
+void Cadastro::on_checkBoxOutros_stateChanged(int state)
+{
+    if (state >= 1) {
+        ui->lineEditOutros->show();
+        ui->comboBoxModalidade->hide();
+    } else {
+        ui->lineEditOutros->hide();
+        ui->comboBoxModalidade->show();
     }
 }
