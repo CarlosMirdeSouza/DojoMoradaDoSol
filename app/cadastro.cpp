@@ -23,6 +23,10 @@ Cadastro::Cadastro(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->lineEditOutros->hide();
+    ui->lineEditCpf->setInputMask("999.999.999-99");
+    ui->lineEditDataNascimento->setInputMask("99/99/9999");
+    ui->lineEditCep->setInputMask("99999-999");
+    ui->lineEditUf->setInputMask(">AA");
 
     filename = ":/images/AdicionarImagem.png";
     QImageReader imageReader(filename);
@@ -135,4 +139,32 @@ void Cadastro::on_checkBoxOutros_stateChanged(int state)
         ui->lineEditOutros->hide();
         ui->comboBoxModalidade->show();
     }
+}
+
+void Cadastro::on_pushButtonLimpar_clicked()
+{
+    ui->lineEditNome->clear();
+    ui->lineEditCpf->clear();
+    ui->lineEditRg->clear();
+    ui->lineEditDataNascimento->clear();
+    ui->lineEditOutros->clear();
+
+    ui->lineEditEmail->clear();
+    ui->lineEditTelefoneCelular->clear();
+    ui->lineEditTelefoneFixo->clear();
+
+    ui->lineEditEndereco->clear();
+    ui->lineEditCidade->clear();
+    ui->lineEditBairro->clear();
+    ui->lineEditCep->clear();
+    ui->lineEditUf->clear();
+
+    ui->lineEditProfissao->clear();
+    ui->lineEditPeso->clear();
+    ui->lineEditCategoria->clear();
+
+    filename = ":/images/AdicionarImagem.png";
+    QImageReader imageReader(filename);
+    QImage adicionarImagem = imageReader.read();
+    ui->labelImagem->setPixmap(QPixmap::fromImage(adicionarImagem));
 }

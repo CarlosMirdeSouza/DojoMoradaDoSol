@@ -26,6 +26,8 @@ private slots:
 
     void on_checkBoxOutros_stateChanged(int arg1);
 
+    void on_pushButtonLimpar_clicked();
+
 private:
     Ui::Cadastro *ui;
 };
