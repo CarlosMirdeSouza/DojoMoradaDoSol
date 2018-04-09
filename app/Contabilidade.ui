@@ -101,7 +101,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
   </widget>
@@ -116,44 +116,66 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="text">
     <string>Pesquisar</string>
    </property>
   </widget>
-  <widget class="QTableView" name="tableView">
+  <widget class="QTableView" name="tableViewContabilidade">
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>90</y>
+     <y>80</y>
      <width>931</width>
-     <height>481</height>
+     <height>491</height>
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>590</y>
-     <width>186</width>
-     <height>27</height>
+     <x>11</x>
+     <y>591</y>
+     <width>931</width>
+     <height>41</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayoutContabilidade">
+   <layout class="QHBoxLayout" name="horizontalLayoutAcoes">
     <item>
      <widget class="QPushButton" name="pushButtonCalcular">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Calcular total</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButtonDelete">
+     <widget class="QPushButton" name="pushButtonGerarGrafico">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Delete</string>
+       <string>Gerar grafico</string>
       </property>
      </widget>
     </item>
