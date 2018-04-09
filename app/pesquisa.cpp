@@ -132,6 +132,9 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     
     ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
+    if (image.isNull()){
+        ui->labelImagem->setText("Sem imagem");
+    }
 }
 
 
