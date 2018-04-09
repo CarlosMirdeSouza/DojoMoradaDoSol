@@ -50,151 +50,91 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>0</y>
      <width>621</width>
-     <height>421</height>
+     <height>431</height>
     </rect>
    </property>
    <property name="title">
     <string/>
    </property>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>600</width>
-      <height>25</height>
+      <y>33</y>
+      <width>601</width>
+      <height>381</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>110</y>
-      <width>600</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>170</y>
-      <width>600</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>230</y>
-      <width>600</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>600</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_6">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>350</y>
-      <width>600</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>550</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Nome do Item:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>90</y>
-      <width>550</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Descrição do Item</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>150</y>
-      <width>550</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Tipo de Item</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>550</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>270</y>
-      <width>550</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>330</y>
-      <width>550</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="labelTipoItem">
+       <property name="text">
+        <string>Tipo de Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxTipoItem"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelDescricaoItem">
+       <property name="text">
+        <string>Descrição do Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditDescricaoItem"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelValor">
+       <property name="text">
+        <string>Valor:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditValor"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelTransacao">
+       <property name="text">
+        <string>Transação:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxTransacao"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelNomeItem">
+       <property name="text">
+        <string>Nome do Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditNomeItem"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelData">
+       <property name="text">
+        <string>Data:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditData"/>
+     </item>
+    </layout>
+    <zorder>comboBoxTipoItem</zorder>
+    <zorder>labelTransacao</zorder>
+    <zorder>labelNomeItem</zorder>
+    <zorder>comboBoxTransacao</zorder>
+    <zorder>lineEditNomeItem</zorder>
+    <zorder>labelTipoItem</zorder>
    </widget>
   </widget>
  </widget>
