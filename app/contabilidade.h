@@ -16,7 +16,15 @@ public:
 
 signals:
 
-public slots:
+private slots:
+    void on_pushButtonPesquisa_clicked();
+    void deleteRow();
+
+protected:
+
+#ifndef QT_NO_CONTEXTMENU
+    void contextMenuEvent(QContextMenuEvent *event) override;
+#endif // QT_NO_CONTEXTMENU
 
 private:
     Ui::Contabilidade *ui;
