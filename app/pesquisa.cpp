@@ -27,14 +27,15 @@ Pesquisa::Pesquisa(QWidget *parent) :
 
 void Pesquisa::on_pushButtonPesquisa_clicked()
 {
-	if (ui->lineEditPesquisa->text().compare("") == 0) {
+    QString textPesquisa = ui->lineEditPesquisa->text();
+    QString textTipoPesquisa = ui->comboBoxTipoPesquisa->currentText();
+
+	if (textPesquisa.compare("") == 0) {
 		db.setTableName("Alunos");
 		ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
 
-    } else if (ui->comboBoxTipoPesquisa->currentText().compare("Nome") == 0) {
-        QString textLineEdit = ui->lineEditPesquisa->text();
-
+    } else if (textTipoPesquisa.compare("Nome") == 0) {
         QString nome("nome LIKE '%");
         nome.append(textLineEdit);
         nome.append("%'");
@@ -43,9 +44,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
         ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
 
-    } else if (ui->comboBoxTipoPesquisa->currentText().compare("CPF") == 0) {
-        QString textLineEdit = ui->lineEditPesquisa->text();
-
+    } else if (textTipoPesquisa.compare("CPF") == 0) {
         QString cpf("cpf LIKE '%");
         cpf.append(textLineEdit);
         cpf.append("%'");
@@ -54,9 +53,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
         ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
 
-    } else if (ui->comboBoxTipoPesquisa->currentText().compare("Modalidade") == 0) {
-        QString textLineEdit = ui->lineEditPesquisa->text();
-
+    } else if (textTipoPesquisa.compare("Modalidade") == 0) {
         QString modalidade("modalidade LIKE '%");
         modalidade.append(textLineEdit);
         modalidade.append("%'");
