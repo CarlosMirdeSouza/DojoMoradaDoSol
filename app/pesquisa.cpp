@@ -19,7 +19,7 @@ Pesquisa::Pesquisa(QWidget *parent) :
     QWidget(parent), ui(new Ui::Pesquisa)
 {
     ui->setupUi(this);
-    
+
 	db.setTableName("Alunos");
     ui->tableViewPesquisa->setModel(db.getTableModel());
     ui->tableViewPesquisa->resizeColumnsToContents();
@@ -124,13 +124,13 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
     imagename.append("images/");
     imagename.append(cpf);
     imagename.append(".jpg");
-    
+
     qInfo() << imagename;
-    
+
     QImageReader imageReader(imagename);
     QImage image = imageReader.read();
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    
+
     ui->labelImagem->setPixmap(QPixmap::fromImage(scaled));
     if (image.isNull()){
         ui->labelImagem->setText("Sem imagem");
@@ -162,16 +162,14 @@ void Pesquisa::contextMenuEvent(QContextMenuEvent *event)
 
 void Pesquisa::deleteRow() {
     QMessageBox confirmDeleteDialog;
+    confirmDeleteDialog.setText(tr("O aluno vai ser eliminado"));
+    confirmDeleteDialog.setInformativeText("Tem certeza que quer eliminar o aluno?");
+    confirmDeleteDialog.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
+    confirmDeleteDialog.setDefaultButton(QMessageBox::Apply);
+    confirmDeleteDialog.setIcon(QMessageBox::Warning);
 
-    QMessageBox msgBox;
-    msgBox.setText(tr("O aluno vai ser eliminado"));
-    msgBox.setInformativeText("Tem certeza que quer eliminar o aluno?");
-    msgBox.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
-    msgBox.setDefaultButton(QMessageBox::Apply);
-    msgBox.setIcon(QMessageBox::Warning);
-
-    int ret = msgBox.exec();
-    switch(ret) {
+    int resposta = confirmDeleteDialog.exec();
+    switch(resposta) {
         case QMessageBox::Apply:
             int selectedRowIndex = ui->tableViewPesquisa->currentIndex().row();
             db.getTableModel()->removeRow(selectedRowIndex);
