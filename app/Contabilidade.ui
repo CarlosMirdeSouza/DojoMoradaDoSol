@@ -71,7 +71,12 @@
    </property>
    <item>
     <property name="text">
-     <string>Pessoa</string>
+     <string>Nome</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CPF</string>
     </property>
    </item>
    <item>
