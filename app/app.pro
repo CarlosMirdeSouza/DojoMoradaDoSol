@@ -28,7 +28,8 @@ FORMS += \
     Cadastro.ui \
     Pesquisa.ui \
     Contabilidade.ui \
-    Eventos.ui
+    Eventos.ui \
+    DialogAddItem.ui
 
 RESOURCES += \
     resources.qrc
