@@ -3,6 +3,7 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include <QMessageBox>
+#include <QDebug>
 #include <bancodados/bancodados.h>
 
 extern BancoDados db;
@@ -22,17 +23,29 @@ Contabilidade::~Contabilidade(){
 void Contabilidade::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
-    if(ui->tableViewContabilidade->underMouse()) {
-        QAction *deleteRowAct = new QAction(tr("Apagar aluno"), this);
-        deleteRowAct->setStatusTip(tr("Apaga o aluno e todas as informações dele."));
-        //connect(deleteRowAct, &QAction::triggered, this, &Contabilidade::deleteRow);
-        menu.addAction(deleteRowAct);
 
-    }// else if (ui->labelImagem->underMouse()) {
-        //QAction *modifyImageAct = new QAction(tr("Modificar imagem do aluno"), this);
-        //modifyImageAct->setStatusTip(tr("Modifica a imagem do aluno eliminando a  imagem anterior."));
-        //connect(modifyImageAct, &QAction::triggered, this, &Contabilidade::modifyImagem);
-        //menu.addAction(modifyImageAct);
+    QString textTipoPesquisa = ui->comboBoxTipoPesquisa->currentText();
+    QString textPesquisa = ui->lineEditPesquisa->text();
+
+    if(ui->tableViewContabilidade->underMouse()) {
+        if (textTipoPesquisa.contains("Nome") || textTipoPesquisa.contains("CPF")) {
+            QAction *deleteRowAct = new QAction(tr("Apagar item"), this);
+            deleteRowAct->setStatusTip(tr("Apaga registro do item vinculado ao aluno"));
+            connect(deleteRowAct, &QAction::triggered, this, &Contabilidade::deleteRow);
+            menu.addAction(deleteRowAct);
+
+            QAction *addItemAct = new QAction(tr("Adicionar item ao aluno"), this);
+            addItemAct->setStatusTip(tr("Adicionar item vinculando-os aos alunos"));
+            connect(addItemAct, &QAction::triggered, this, &Contabilidade::addItem);
+            menu.addAction(addItemAct);
+
+            QAction *addMensalidadeAct = new QAction(tr("Adicionar mensalidade ao aluno"), this);
+            addMensalidadeAct->setStatusTip(tr("Adicionar mensalidade e vincular essa mensalidade com o aluno"));
+            connect(addItemAct, &QAction::triggered, this, &Contabilidade::);
+            
+        }
+
+    }
 
 
 
@@ -40,49 +53,79 @@ void Contabilidade::contextMenuEvent(QContextMenuEvent *event)
 }
 #endif // QT_NO_CONTEXTMENU
 
+void Contabilidade::addItem() {
+
+}
+
+void Contabilidade::addMensalidade() {
+
+}
 
 void Contabilidade::on_pushButtonPesquisa_clicked()
 {
     QString textPesquisa = ui->lineEditPesquisa->text();
     QString textTipoPesquisa = ui->comboBoxTipoPesquisa->currentText();
 
-	if (textPesquisa.compare("") == 0) {
-        if (textTipoPesquisa.compare("Pessoa") == 0) {
+	if (textPesquisa.contains("") ) {
+        if (textTipoPesquisa.contains("Nome") || textTipoPesquisa.contains("CPF")) {
             db.setTableName("Alunos");
-        } else if (textTipoPesquisa.compare("Mensalidade") == 0) {
+            ui->tableViewContabilidade->setModel(db.getTableModel());
+            ui->tableViewContabilidade->resizeColumnsToContents();
+
+        } else if (textTipoPesquisa.contains("Mensalidade") ) {
             db.setTableName("Mensalidades");
-        } else if (textTipoPesquisa.compare("Item") == 0) {
-            db.setTableName("Itens");
+            ui->tableViewContabilidade->setModel(db.getTableModel());
+            ui->tableViewContabilidade->resizeColumnsToContents();
+
+        } else if (textTipoPesquisa.contains("Item") ) {
+            //QSqlRelationalTableModel *relationalModel = new QSqlRelationalTableModel;
+            //relationalModel->setTable("Itens");
+            //relationalModel->setRelation(2, QSqlRelation("Item", "id", "nome"));
+            //relationalModel->setRelation(3, QSqlRelation("Item", "id", "descricao"));
+            //relationalModel->setRelation(4, QSqlRelation("Item", "id", "valor"));
+            //relationalModel->select();
+            QSqlTableModel *table = new QSqlTableModel;
+            table->setTable("Item");
+            qInfo() << "Hello" << table->database().databaseName();
+            ui->tableViewContabilidade->setModel(table/*relationalModel*/);
+            ui->tableViewContabilidade->resizeColumnsToContents();
+
         }
 
+    } else if (textTipoPesquisa.contains("Nome")) {
+        QString nome("nome LIKE '%");
+        nome.append(textPesquisa);
+        nome.append("%'");
+        db.getTableModel()->setFilter(nome);
         ui->tableViewContabilidade->setModel(db.getTableModel());
         ui->tableViewContabilidade->resizeColumnsToContents();
 
-    } else if (textTipoPesquisa.compare("Pessoa") == 0) {
-        if (textPesquisa.isNull()) {
-            QString cpf("cpf LIKE '%");
-            cpf.append(textPesquisa);
-            cpf.append("%''");
-            db.getTableModel()->setFilter(cpf);
+    } else if (textTipoPesquisa.contains("CPF") ) {
+        ui->lineEditPesquisa->setInputMask("999.999.999-99");
 
-        } else {
-            QString nome("nome LIKE '%");
-            nome.append(textPesquisa);
-            nome.append("%'");
-            db.getTableModel()->setFilter(nome);
-        }
-
-        ui->tableViewContabilidade->setModel(db.getTableModel());
-        ui->tableViewContabilidade->resizeColumnsToContents();
-
-    } else if (textTipoPesquisa.compare("Mensalidade") == 0) {
+        QString cpf("cpf LIKE '%");
+        cpf.append(textPesquisa);
+        cpf.append("%''");
+        db.getTableModel()->setFilter(cpf);
 
         ui->tableViewContabilidade->setModel(db.getTableModel());
         ui->tableViewContabilidade->resizeColumnsToContents();
 
-    } else if (textTipoPesquisa.compare("Item") == 0) {
-        //db.getTableModel()->setFilter(modalidade);
+    } else if (textTipoPesquisa.contains("Mensalidade") ) {
+
         ui->tableViewContabilidade->setModel(db.getTableModel());
+        ui->tableViewContabilidade->resizeColumnsToContents();
+
+    } else if (textTipoPesquisa.contains("Item") ) {
+        //QSqlRelationalTableModel *relationalModel = new QSqlRelationalTableModel;
+        //relationalModel->setTable("Itens");
+        //relationalModel->setRelation(2, QSqlRelation("Item", "id", "nome"));
+        //relationalModel->setRelation(3, QSqlRelation("Item", "id", "descricao"));
+        //relationalModel->setRelation(4, QSqlRelation("Item", "id", "valor"));
+        //relationalModel->select();
+        QSqlTableModel *table = new QSqlTableModel;
+        table->setTable("Item");
+        ui->tableViewContabilidade->setModel(table/*relationalModel*/);
         ui->tableViewContabilidade->resizeColumnsToContents();
 
 	} else {
