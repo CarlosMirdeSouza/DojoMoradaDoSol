@@ -11,6 +11,7 @@ HEADERS += \
     pesquisa.h \
     contabilidade.h \
     eventos.h \
+    dialogadditem.h \
     bancodados/bancodados.h
 
 SOURCES += \
@@ -20,6 +21,7 @@ SOURCES += \
     pesquisa.cpp \
     contabilidade.cpp \
     eventos.cpp \
+    dialogadditem.cpp \
     bancodados/bancodados.cpp
 
 
