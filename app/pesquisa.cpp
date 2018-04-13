@@ -37,7 +37,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
 
     } else if (textTipoPesquisa.compare("Nome") == 0) {
         QString nome("nome LIKE '%");
-        nome.append(textLineEdit);
+        nome.append(textPesquisa);
         nome.append("%'");
 
         db.getTableModel()->setFilter(nome);
@@ -46,7 +46,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
 
     } else if (textTipoPesquisa.compare("CPF") == 0) {
         QString cpf("cpf LIKE '%");
-        cpf.append(textLineEdit);
+        cpf.append(textPesquisa);
         cpf.append("%'");
 
         db.getTableModel()->setFilter(cpf);
@@ -55,7 +55,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
 
     } else if (textTipoPesquisa.compare("Modalidade") == 0) {
         QString modalidade("modalidade LIKE '%");
-        modalidade.append(textLineEdit);
+        modalidade.append(textPesquisa);
         modalidade.append("%'");
 
         db.getTableModel()->setFilter(modalidade);
