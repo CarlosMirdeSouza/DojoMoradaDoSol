@@ -18,7 +18,11 @@ signals:
 
 private slots:
     void on_pushButtonPesquisa_clicked();
+
     void deleteRow();
+    void addItem();
+    void addMensalidade();
+    void addDoacoes();
 
 protected:
 

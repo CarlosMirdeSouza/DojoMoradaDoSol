@@ -18,6 +18,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
@@ -58,7 +61,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -129,6 +132,12 @@
       <widget class="QLineEdit" name="lineEditData"/>
      </item>
     </layout>
+    <zorder>labelDescricaoItem</zorder>
+    <zorder>lineEditDescricaoItem</zorder>
+    <zorder>labelValor</zorder>
+    <zorder>lineEditValor</zorder>
+    <zorder>labelData</zorder>
+    <zorder>lineEditData</zorder>
     <zorder>comboBoxTipoItem</zorder>
     <zorder>labelTransacao</zorder>
     <zorder>labelNomeItem</zorder>
