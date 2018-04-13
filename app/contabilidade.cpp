@@ -1,4 +1,5 @@
 #include "contabilidade.h"
+#include "dialogadditem.h"
 
 #include <QMenu>
 #include <QContextMenuEvent>
@@ -13,6 +14,7 @@ Contabilidade::Contabilidade(QWidget *parent) :
     QWidget(parent), ui(new Ui::Contabilidade)
 {
     ui->setupUi(this);
+
 }
 
 Contabilidade::~Contabilidade(){
@@ -41,8 +43,14 @@ void Contabilidade::contextMenuEvent(QContextMenuEvent *event)
 
             QAction *addMensalidadeAct = new QAction(tr("Adicionar mensalidade ao aluno"), this);
             addMensalidadeAct->setStatusTip(tr("Adicionar mensalidade e vincular essa mensalidade com o aluno"));
-            connect(addItemAct, &QAction::triggered, this, &Contabilidade::);
-            
+            connect(addItemAct, &QAction::triggered, this, &Contabilidade::addMensalidade);
+            menu.addAction(addMensalidadeAct);
+
+            QAction *addDoacoesAct = new QAction(tr("Adicionar doação ao aluno"));
+            addDoacoesAct = new QAction(tr("Adicionar doação e vincular com o aluno"));
+            connect(addItemAct, &QAction::triggered, this, &Contabilidade::addDoacoes);
+            menu.addAction(addMensalidadeAct);
+
         }
 
     }
@@ -54,10 +62,15 @@ void Contabilidade::contextMenuEvent(QContextMenuEvent *event)
 #endif // QT_NO_CONTEXTMENU
 
 void Contabilidade::addItem() {
-
+    DialogAddItem dialog;
+    dialog.exec();
 }
 
 void Contabilidade::addMensalidade() {
+
+}
+
+void Contabilidade::addDoacoes() {
 
 }
 

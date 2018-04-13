@@ -22,6 +22,7 @@ private slots:
     void deleteRow();
     void addItem();
     void addMensalidade();
+    void addDoacoes();
 
 protected:
 
