@@ -1,5 +1,7 @@
 #include "dialogadditem.h"
 
+extern BancoDados db;
+
 DialogAddItem::DialogAddItem(QWidget *parent) :
     QDialog(parent), ui(new Ui::DialogAddItem)
 {
@@ -8,5 +10,5 @@ DialogAddItem::DialogAddItem(QWidget *parent) :
 }
 
 DialogAddItem::~DialogAddItem() {
-    
+
 }
