@@ -37,7 +37,7 @@ FORMS += \
     Eventos.ui \
     dialogs/DialogAddItem.ui \
     dialogs/DialogAddDoacao.ui \
-    dialogs/DialogAddMensalidade.ui
+    #dialogs/DialogAddMensalidade.ui
 
 RESOURCES += \
     resources.qrc
