@@ -2,7 +2,7 @@
 #define DIALOGADDITEM_H
 
 #include "ui_DialogAddItem.h"
-#include "bancodedados/bancodedados.h"
+#include "bancodados/bancodados.h"
 
 namespace Ui {
     class DialogAddItem;
