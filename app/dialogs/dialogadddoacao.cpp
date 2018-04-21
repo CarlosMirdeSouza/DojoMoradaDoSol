@@ -1,5 +1,6 @@
 #include "dialogs/dialogadddoacao.h"
 
+// TODO: Agregar conexao BancoDados
 extern BancoDados db;
 
 DialogAddDoacao::DialogAddDoacao(QWidget *parent) :
