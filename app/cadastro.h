@@ -5,6 +5,18 @@
 #include "ui_Cadastro.h"
 #include "bancodados/bancodados.h"
 
+#include <QtGlobal>
+#include <QtDebug>
+
+#include <QDateTime>
+
+#include <QLabel>
+#include <QImage>
+#include <QImageReader>
+#include <QFileDialog>
+#include <QStringList>
+#include <QMessageBox>
+
 namespace Ui {
     class Cadastro;
 }
@@ -30,6 +42,8 @@ private slots:
 
 private:
     Ui::Cadastro *ui;
+    QImage image;
+    QString filename;
 };
 
 #endif // CADASTRO_H

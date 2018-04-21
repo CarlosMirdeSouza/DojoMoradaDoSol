@@ -1,25 +1,18 @@
 ﻿#include "pesquisa.h"
-#include "bancodados/bancodados.h"
 
-#include <QSqlRecord>
-
-#include <QImageReader>
-#include <QImage>
-#include <QMenu>
-#include <QAction>
-#include <QContextMenuEvent>
-#include <QMessageBox>
-#include <QFileDialog>
+// TODO: Refatorar includes, image, messagebox
+// TODO: Colocar inputMask em lineEdit quando for CPF
+// TODO: Quando perder foco tirar o contextMenu
 
 extern BancoDados db;
 
-QString imagename("");
 
 Pesquisa::Pesquisa(QWidget *parent) :
     QWidget(parent), ui(new Ui::Pesquisa)
 {
     ui->setupUi(this);
 
+    // TODO: Criar função para atualizar a tabela
 	db.setTableName("Alunos");
     ui->tableViewPesquisa->setModel(db.getTableModel());
     ui->tableViewPesquisa->resizeColumnsToContents();
@@ -30,12 +23,12 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
     QString textPesquisa = ui->lineEditPesquisa->text();
     QString textTipoPesquisa = ui->comboBoxTipoPesquisa->currentText();
 
-	if (textPesquisa.compare("") == 0) {
+	if (textPesquisa.contains("")) {
 		db.setTableName("Alunos");
 		ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
 
-    } else if (textTipoPesquisa.compare("Nome") == 0) {
+    } else if (textTipoPesquisa.contains("Nome")) {
         QString nome("nome LIKE '%");
         nome.append(textPesquisa);
         nome.append("%'");
@@ -44,7 +37,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
         ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
 
-    } else if (textTipoPesquisa.compare("CPF") == 0) {
+    } else if (textTipoPesquisa.contains("CPF")) {
         QString cpf("cpf LIKE '%");
         cpf.append(textPesquisa);
         cpf.append("%'");
@@ -53,7 +46,7 @@ void Pesquisa::on_pushButtonPesquisa_clicked()
         ui->tableViewPesquisa->setModel(db.getTableModel());
         ui->tableViewPesquisa->resizeColumnsToContents();
 
-    } else if (textTipoPesquisa.compare("Modalidade") == 0) {
+    } else if (textTipoPesquisa.contains("Modalidade")) {
         QString modalidade("modalidade LIKE '%");
         modalidade.append(textPesquisa);
         modalidade.append("%'");
@@ -117,14 +110,14 @@ void Pesquisa::on_tableViewPesquisa_clicked(const QModelIndex &index)
 {
     QString cpf = db.getTableModel()->record(index.row()).value("cpf").toString();
 
-    imagename.clear();
-    imagename.append("images/");
-    imagename.append(cpf);
-    imagename.append(".jpg");
+    filename.clear();
+    filename.append("images/");
+    filename.append(cpf);
+    filename.append(".jpg");
 
-    qInfo() << imagename;
+    qInfo() << filename;
 
-    QImageReader imageReader(imagename);
+    QImageReader imageReader(filename);
     QImage image = imageReader.read();
     QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
@@ -176,7 +169,7 @@ void Pesquisa::deleteRow() {
             ui->tableViewPesquisa->setModel(db.getTableModel());
             ui->tableViewPesquisa->resizeColumnsToContents();
 
-            QFile(imagename).remove();
+            QFile(filename).remove();
             break;
     }
 }
@@ -194,8 +187,8 @@ void Pesquisa::modifyImagem() {
     int respostaWarning = imagemPadraoWarning.exec();
     switch(respostaWarning){
         case QMessageBox::Apply:
-            QFile(imagename).remove();
-            qInfo() << "Imagename in ModifyImage: " << imagename;
+            QFile(filename).remove();
+            qInfo() << "Imagename in ModifyImage: " << filename;
             QFileDialog imageDialog(this);
             imageDialog.setFileMode(QFileDialog::ExistingFile);
 
@@ -208,7 +201,7 @@ void Pesquisa::modifyImagem() {
                 QImageReader imageReader(newImage);
                 QImage image = imageReader.read();
                 QImage scaled = image.scaled(200, 441, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-                qInfo() << "Save new image: " << scaled.save(imagename);
+                qInfo() << "Save new image: " << scaled.save(filename);
             }
         break;
     }

@@ -1,22 +1,12 @@
 #include "cadastro.h"
-#include "bancodados/bancodados.h"
 
-#include <QtGlobal>
-#include <QtDebug>
 
-#include <QDateTime>
-
-#include <QLabel>
-#include <QImage>
-#include <QImageReader>
-#include <QFileDialog>
-#include <QStringList>
-#include <QMessageBox>
+// TODO: Refatorar includes
+// TODO: Colocar inputMask nos telefones
+// TODO: Colocar inputMask em RG para limitar o numero
 
 extern BancoDados db;
 
-QImage image;
-QString filename;
 
 Cadastro::Cadastro(QWidget *parent) :
     QWidget(parent), ui(new Ui::Cadastro)
@@ -28,6 +18,7 @@ Cadastro::Cadastro(QWidget *parent) :
     ui->lineEditCep->setInputMask("99999-999");
     ui->lineEditUf->setInputMask(">AA");
 
+    // TODO: Criar uma função para abrir imagens
     filename = ":/images/AdicionarImagem.png";
     QImageReader imageReader(filename);
     QImage adicionarImagem = imageReader.read();
@@ -36,6 +27,7 @@ Cadastro::Cadastro(QWidget *parent) :
 
 void Cadastro::on_pushButtonCadastro_clicked()
 {
+    // TODO: Refatorar query
     QSqlQuery *query = new QSqlQuery;
     query->prepare("INSERT INTO Alunos (cpf, nome, rg, dataNascimento, modalidade, email, telefoneCelular, "
                   "telefoneFixo, endereco, cidade, bairro, cep, uf, profissao, categoria) "
@@ -62,7 +54,8 @@ void Cadastro::on_pushButtonCadastro_clicked()
     query->bindValue(":categoria", ui->lineEditCategoria->text());
 
     qInfo() << filename;
-    if (filename.compare(":/images/AdicionarImagem.png") == 0) {
+    if (filename.contains(":/images/AdicionarImagem.png")) {
+        // TODO: Refatorar criação de messagebox
         QMessageBox imagemPadraoWarning;
         imagemPadraoWarning.setText(tr("Nao foi adicionada nenhuma imagem"));
         imagemPadraoWarning.setInformativeText("Tem certeza que quer continuar com o cadastro?");
@@ -70,7 +63,7 @@ void Cadastro::on_pushButtonCadastro_clicked()
         imagemPadraoWarning.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
         imagemPadraoWarning.setDefaultButton(QMessageBox::Apply);
         imagemPadraoWarning.setIcon(QMessageBox::Warning);
-
+        // TODO: Refatorar resposta messagebox
         int respostaWarning = imagemPadraoWarning.exec();
         switch(respostaWarning){
             case QMessageBox::Apply:
@@ -93,7 +86,7 @@ void Cadastro::on_pushButtonCadastro_clicked()
 		if (!QDir("images").exists()) {
             QDir().mkdir("images");
 		}
-		
+        // TODO: Criar funçao para salvar imagens
         filename = "images/";
         filename.append(ui->lineEditCpf->text());
         filename.append(".jpg");
@@ -114,6 +107,7 @@ void Cadastro::on_pushButtonCadastro_clicked()
 
 void Cadastro::on_pushButtonAdicionarFoto_clicked()
 {
+    // TODO: Criar funçao para FileDialog
     QFileDialog imageDialog(this);
     imageDialog.setFileMode(QFileDialog::ExistingFile);
 
@@ -143,6 +137,8 @@ void Cadastro::on_checkBoxOutros_stateChanged(int state)
 
 void Cadastro::on_pushButtonLimpar_clicked()
 {
+    // TODO: How to iterate in widgets
+    // findChildren("lineEdit") e percorrer a lista em loop
     ui->lineEditNome->clear();
     ui->lineEditCpf->clear();
     ui->lineEditRg->clear();
