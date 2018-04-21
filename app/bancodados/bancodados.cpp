@@ -1,5 +1,6 @@
 #include "bancodados.h"
 
+// TODO: Refatorar esta classe
 
 BancoDados::BancoDados(QObject *parent) : QObject(parent)
 {
@@ -7,7 +8,7 @@ BancoDados::BancoDados(QObject *parent) : QObject(parent)
 }
 
 BancoDados::~BancoDados() {
-	
+
 }
 
 void BancoDados::setTableName(QString name) {
