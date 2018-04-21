@@ -15,6 +15,9 @@ public:
     DialogAddItem (QWidget *parent = nullptr);
     virtual ~DialogAddItem ();
 
+private slots:
+    void on_comboBoxTransacao_currentIndexChanged(const QString &text);
+
 private:
     Ui::DialogAddItem *ui;
 };
