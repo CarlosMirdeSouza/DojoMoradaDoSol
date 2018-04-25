@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mdiAreaMain->addSubWindow(contabilidade);
     ui->mdiAreaMain->addSubWindow(eventos);
     ui->mdiAreaMain->addSubWindow(cadastro);
+
 }
 
 MainWindow::~MainWindow() {
