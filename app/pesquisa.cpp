@@ -12,8 +12,9 @@ Pesquisa::Pesquisa(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    db.openDatabase();
+
     // TODO: Criar função para atualizar a tabela
-	db.setTableName("Alunos");
     ui->tableViewPesquisa->setModel(db.getTableModel());
     ui->tableViewPesquisa->resizeColumnsToContents();
 }
