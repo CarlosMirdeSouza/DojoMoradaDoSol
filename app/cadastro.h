@@ -42,6 +42,7 @@ private slots:
 
 private:
     Ui::Cadastro *ui;
+    BancoDados db;
     QImage image;
     QString filename;
 };

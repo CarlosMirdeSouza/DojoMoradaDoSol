@@ -18,6 +18,24 @@
   <property name="windowTitle">
    <string>Cadastro</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+  color: #eff0f1;
+  background-color: #3A94FF;
+  selection-background-color: #2968B2;
+  selection-color: #eff0f1;
+  background-clip: border;
+  border-image: none;
+  border: 0px transparent black;
+  outline: 0;
+}
+QCheckBox {
+    spacing: 5px;
+    outline: none;
+    color: #eff0f1;
+    margin-bottom: 2px;
+}</string>
+  </property>
   <widget class="QGroupBox" name="groupBoxDadosPessoias">
    <property name="geometry">
     <rect>
@@ -107,6 +125,21 @@
       <widget class="QComboBox" name="comboBoxModalidade">
        <property name="enabled">
         <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget {
+  color: #eff0f1;
+  background-color: #3A94FF;
+  selection-background-color: #2968B2;
+  selection-color: #eff0f1;
+  background-clip: border;
+  border-image: none;
+  border: 0px transparent black;
+  outline: 0;
+}
+QCheckBox {
+	background-color: #eff0f1;
+}</string>
        </property>
        <property name="frame">
         <bool>true</bool>

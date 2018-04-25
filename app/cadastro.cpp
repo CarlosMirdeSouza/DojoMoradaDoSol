@@ -18,7 +18,8 @@ Cadastro::Cadastro(QWidget *parent) :
     ui->lineEditCep->setInputMask("99999-999");
     ui->lineEditUf->setInputMask(">AA");
 
-    // TODO: Criar uma função para abrir imagens
+    db.openDatabase();
+
     filename = ":/images/AdicionarImagem.png";
     QImageReader imageReader(filename);
     QImage adicionarImagem = imageReader.read();
@@ -86,7 +87,7 @@ void Cadastro::on_pushButtonCadastro_clicked()
 		if (!QDir("images").exists()) {
             QDir().mkdir("images");
 		}
-        // TODO: Criar funçao para salvar imagens
+		
         filename = "images/";
         filename.append(ui->lineEditCpf->text());
         filename.append(".jpg");
