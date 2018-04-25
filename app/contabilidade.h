@@ -30,6 +30,9 @@ private slots:
     void addItem();
     void addMensalidade();
     void addDoacoes();
+    void addTipoItem();
+    void modifyTipoItem();
+    void deleteTipoItem();
 
 protected:
 
@@ -41,6 +44,7 @@ private:
     Ui::Contabilidade *ui;
     QImage image;
     QString filename;
+    BancoDados db;
 };
 
 #endif // CONTABILIDADE_H
