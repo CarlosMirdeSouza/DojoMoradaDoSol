@@ -4,6 +4,14 @@
 #include "ui_Pesquisa.h"
 #include "bancodados/bancodados.h"
 
+#include <QImageReader>
+#include <QImage>
+#include <QMenu>
+#include <QAction>
+#include <QContextMenuEvent>
+#include <QMessageBox>
+#include <QFileDialog>
+
 namespace Ui {
     class Pesquisa;
 }
@@ -38,6 +46,8 @@ protected:
 
 private:
     Ui::Pesquisa *ui;
+    BancodDados db;
+    QString filename;
 };
 
 #endif // PESQUISA_H
