@@ -20,6 +20,7 @@ private slots:
 
 private:
     Ui::DialogAddItem *ui;
+    BancoDados db;
 };
 
 #endif // DIALOGADDITEM_H

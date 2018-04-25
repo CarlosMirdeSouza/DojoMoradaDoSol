@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogAddItem</class>
+ <widget class="QDialog" name="DialogAddItem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>440</y>
+     <width>631</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="locale">
+    <locale language="Portuguese" country="Brazil"/>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+   <property name="centerButtons">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>621</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>33</y>
+      <width>601</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="labelTipoItem">
+       <property name="text">
+        <string>Tipo de Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxTipoItem"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelDescricaoItem">
+       <property name="text">
+        <string>Descrição do Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditDescricaoItem"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelTransacao">
+       <property name="text">
+        <string>Transação:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxTransacao"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelNomeItem">
+       <property name="text">
+        <string>Nome do Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelValor">
+       <property name="text">
+        <string>Valor:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditValor"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelData">
+       <property name="text">
+        <string>Data:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditData"/>
+     </item>
+    </layout>
+    <zorder>labelDescricaoItem</zorder>
+    <zorder>lineEditDescricaoItem</zorder>
+    <zorder>labelValor</zorder>
+    <zorder>lineEditValor</zorder>
+    <zorder>labelData</zorder>
+    <zorder>lineEditData</zorder>
+    <zorder>lineEditNomeItem</zorder>
+    <zorder>labelTipoItem</zorder>
+    <zorder>comboBoxTipoItem</zorder>
+    <zorder>labelNomeItem</zorder>
+    <zorder>comboBoxTransacao</zorder>
+    <zorder>labelTransacao</zorder>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>comboBoxTipoItem</tabstop>
+  <tabstop>lineEditNomeItem</tabstop>
+  <tabstop>lineEditDescricaoItem</tabstop>
+  <tabstop>comboBoxTransacao</tabstop>
+  <tabstop>lineEditValor</tabstop>
+  <tabstop>lineEditData</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DialogAddItem</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DialogAddItem</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
