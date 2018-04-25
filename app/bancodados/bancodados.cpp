@@ -4,7 +4,8 @@
 
 BancoDados::BancoDados(QObject *parent) : QObject(parent)
 {
-
+    this->setDatabaseName("database");
+    this->setDriver("QSQLITE");
 }
 
 BancoDados::~BancoDados() {
@@ -16,21 +17,24 @@ void BancoDados::setTableName(QString name) {
     this->tableModel->setTable(name);
     this->tableModel->select();
 
-    this->tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("CPF"));
-    this->tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nome"));
-    this->tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("RG"));
-    this->tableModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Data de Nascimento"));
-    this->tableModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Modalidade"));
-    this->tableModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Email"));
-    this->tableModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Telefone Celular"));
-    this->tableModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Telefone Fixo"));
-    this->tableModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Endereço"));
-    this->tableModel->setHeaderData(9, Qt::Horizontal, QObject::tr("Cidade"));
-    this->tableModel->setHeaderData(10, Qt::Horizontal, QObject::tr("Bairro"));
-    this->tableModel->setHeaderData(11, Qt::Horizontal, QObject::tr("CEP"));
-    this->tableModel->setHeaderData(12, Qt::Horizontal, QObject::tr("UF"));
-    this->tableModel->setHeaderData(13, Qt::Horizontal, QObject::tr("Profissão"));
-    this->tableModel->setHeaderData(14, Qt::Horizontal, QObject::tr("Categoria"));
+    if (name.contains("Alunos")) {
+        this->tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("CPF"));
+        this->tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nome"));
+        this->tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("RG"));
+        this->tableModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Data de Nascimento"));
+        this->tableModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Modalidade"));
+        this->tableModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Email"));
+        this->tableModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Telefone Celular"));
+        this->tableModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Telefone Fixo"));
+        this->tableModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Endereço"));
+        this->tableModel->setHeaderData(9, Qt::Horizontal, QObject::tr("Cidade"));
+        this->tableModel->setHeaderData(10, Qt::Horizontal, QObject::tr("Bairro"));
+        this->tableModel->setHeaderData(11, Qt::Horizontal, QObject::tr("CEP"));
+        this->tableModel->setHeaderData(12, Qt::Horizontal, QObject::tr("UF"));
+        this->tableModel->setHeaderData(13, Qt::Horizontal, QObject::tr("Profissão"));
+        this->tableModel->setHeaderData(14, Qt::Horizontal, QObject::tr("Categoria"));
+
+    }
 }
 
 void BancoDados::setDatabaseName(QString name) {
