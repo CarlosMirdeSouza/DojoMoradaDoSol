@@ -82,6 +82,16 @@
       <widget class="QComboBox" name="comboBoxTipoItem"/>
      </item>
      <item>
+      <widget class="QLabel" name="labelNomeItem">
+       <property name="text">
+        <string>Nome do Item:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditNomeItem"/>
+     </item>
+     <item>
       <widget class="QLabel" name="labelDescricaoItem">
        <property name="text">
         <string>Descrição do Item:</string>
@@ -109,17 +119,18 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBoxTransacao"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="labelNomeItem">
-       <property name="text">
-        <string>Nome do Item:</string>
-       </property>
+      <widget class="QComboBox" name="comboBoxTransacao">
+       <item>
+        <property name="text">
+         <string>Entrada</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Saida</string>
+        </property>
+       </item>
       </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEditNomeItem"/>
      </item>
      <item>
       <widget class="QLabel" name="labelData">
@@ -138,12 +149,12 @@
     <zorder>lineEditValor</zorder>
     <zorder>labelData</zorder>
     <zorder>lineEditData</zorder>
-    <zorder>comboBoxTipoItem</zorder>
     <zorder>labelTransacao</zorder>
-    <zorder>labelNomeItem</zorder>
     <zorder>comboBoxTransacao</zorder>
     <zorder>lineEditNomeItem</zorder>
     <zorder>labelTipoItem</zorder>
+    <zorder>comboBoxTipoItem</zorder>
+    <zorder>labelNomeItem</zorder>
    </widget>
   </widget>
  </widget>

@@ -2,6 +2,7 @@
 #define DIALOGADDITEM_H
 
 #include "ui_DialogAddItem.h"
+#include "bancodados/bancodados.h"
 
 namespace Ui {
     class DialogAddItem;
@@ -13,6 +14,9 @@ class DialogAddItem : public QDialog {
 public:
     DialogAddItem (QWidget *parent = nullptr);
     virtual ~DialogAddItem ();
+
+private slots:
+    void on_comboBoxTransacao_currentIndexChanged(const QString &text);
 
 private:
     Ui::DialogAddItem *ui;

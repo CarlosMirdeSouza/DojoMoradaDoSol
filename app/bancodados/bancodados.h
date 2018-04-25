@@ -7,11 +7,15 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
+#include <QSqlRecord>
 #include <QSqlRelationalTableModel>
 #include <QSqlDatabase>
 #include <QSqlError>
 
 #include <QtDebug>
+
+// TODO: Refatorar esta classe
+// TODO: Refatorar includes
 
 
 class BancoDados : QObject
@@ -20,7 +24,7 @@ class BancoDados : QObject
 public:
     BancoDados(QObject *parent = nullptr);
     ~BancoDados();
-    
+
     void setTableName(QString name);
     void setDatabaseName(QString name);
     void openDatabase();
@@ -32,9 +36,9 @@ public:
 
     QSqlQuery getData();
 
-    
-    
-    
+
+
+
 private:
     QSqlDatabase database;
 	QSqlQuery query;

@@ -3,6 +3,13 @@
 
 #include "ui_Contabilidade.h"
 
+#include <QMenu>
+#include <QContextMenuEvent>
+#include <QMessageBox>
+
+#include "dialogs/dialogadditem.h"
+#include <bancodados/bancodados.h>
+
 namespace Ui {
     class Contabilidade;
 }
@@ -32,6 +39,8 @@ protected:
 
 private:
     Ui::Contabilidade *ui;
+    QImage image;
+    QString filename;
 };
 
 #endif // CONTABILIDADE_H

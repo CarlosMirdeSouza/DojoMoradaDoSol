@@ -11,7 +11,9 @@ HEADERS += \
     pesquisa.h \
     contabilidade.h \
     eventos.h \
-    dialogadditem.h \
+    dialogs/dialogadditem.h \
+    dialogs/dialogadddoacao.h \
+    dialogs/dialogaddmensalidade.h \
     bancodados/bancodados.h
 
 SOURCES += \
@@ -21,7 +23,9 @@ SOURCES += \
     pesquisa.cpp \
     contabilidade.cpp \
     eventos.cpp \
-    dialogadditem.cpp \
+    dialogs/dialogadditem.cpp \
+    dialogs/dialogadddoacao.cpp \
+    dialogs/dialogaddmensalidade.cpp \
     bancodados/bancodados.cpp
 
 
@@ -31,7 +35,9 @@ FORMS += \
     Pesquisa.ui \
     Contabilidade.ui \
     Eventos.ui \
-    DialogAddItem.ui
+    dialogs/DialogAddItem.ui \
+    dialogs/DialogAddDoacao.ui \
+    #dialogs/DialogAddMensalidade.ui
 
 RESOURCES += \
     resources.qrc

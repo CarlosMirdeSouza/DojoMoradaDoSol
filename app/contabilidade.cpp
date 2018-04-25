@@ -1,11 +1,13 @@
 #include "contabilidade.h"
-#include "dialogadditem.h"
 
-#include <QMenu>
-#include <QContextMenuEvent>
-#include <QMessageBox>
-#include <QDebug>
-#include <bancodados/bancodados.h>
+
+// TODO: Colocar inputMask em lineEdit quando for CPF
+// TODO: Quando perder foco tirar o contextMenu
+
+// TODO: Gerar graficos do balanço do dia/semana/mes
+// TODO: Fazer calculo de dia/semana/mes
+// TODO: Modificar apagar item do contextMenu (Item/Mensalidade/Doacao)
+// TODO: Pequenos ajustes na gui para preencher todo o espaço
 
 extern BancoDados db;
 
