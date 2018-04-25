@@ -40,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuContabilidade">
@@ -88,8 +88,21 @@
     <addaction name="menuEventos_2"/>
     <addaction name="actionParticipantes"/>
    </widget>
+   <widget class="QMenu" name="menuDebug">
+    <property name="title">
+     <string>Debug</string>
+    </property>
+    <widget class="QMenu" name="menuStyle">
+     <property name="title">
+      <string>Style</string>
+     </property>
+     <addaction name="actionReload"/>
+    </widget>
+    <addaction name="menuStyle"/>
+   </widget>
    <addaction name="menuContabilidade"/>
    <addaction name="menuEventos"/>
+   <addaction name="menuDebug"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDoa_es">
@@ -150,6 +163,11 @@
   <action name="actionEliminar_evento">
    <property name="text">
     <string>Eliminar evento</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="text">
+    <string>Reload</string>
    </property>
   </action>
  </widget>
