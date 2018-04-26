@@ -7,7 +7,7 @@ DialogAddItem::DialogAddItem(QWidget *parent) :
     ui->lineEditData->setInputMask("00/00/0000");
     ui->lineEditValor->setInputMask("00000,00");
 
-    db.openDatabase();
+    //db.openDatabase();
 
     // Agregando itens ao comboBox diretamente do BD
     // Assim o usuario pode modificar os tipos de itens

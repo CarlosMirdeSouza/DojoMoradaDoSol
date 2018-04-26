@@ -5,8 +5,6 @@
 // TODO: Colocar inputMask nos telefones
 // TODO: Colocar inputMask em RG para limitar o numero
 
-extern BancoDados db;
-
 
 Cadastro::Cadastro(QWidget *parent) :
     QWidget(parent), ui(new Ui::Cadastro)
@@ -18,7 +16,7 @@ Cadastro::Cadastro(QWidget *parent) :
     ui->lineEditCep->setInputMask("99999-999");
     ui->lineEditUf->setInputMask(">AA");
 
-    db.openDatabase();
+    //db.openDatabase();
 
     filename = ":/images/AdicionarImagem.png";
     QImageReader imageReader(filename);

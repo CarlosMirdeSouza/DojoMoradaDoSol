@@ -4,15 +4,13 @@
 // TODO: Colocar inputMask em lineEdit quando for CPF
 // TODO: Quando perder foco tirar o contextMenu
 
-extern BancoDados db;
-
 
 Pesquisa::Pesquisa(QWidget *parent) :
     QWidget(parent), ui(new Ui::Pesquisa)
 {
     ui->setupUi(this);
 
-    db.openDatabase();
+    //db.openDatabase();
 
     // TODO: Criar função para atualizar a tabela
     ui->tableViewPesquisa->setModel(db.getTableModel());

@@ -46,7 +46,7 @@ protected:
 
 private:
     Ui::Pesquisa *ui;
-    BancodDados db;
+    BancoDados db;
     QString filename;
 };
 
