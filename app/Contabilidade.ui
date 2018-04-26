@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Contabilidade</string>
   </property>
+  <property name="locale">
+   <locale language="Portuguese" country="Brazil"/>
+  </property>
   <widget class="QLabel" name="labelPesquisa">
    <property name="geometry">
     <rect>
