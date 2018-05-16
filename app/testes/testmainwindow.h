@@ -1,16 +1,17 @@
 #ifndef TESTMAINWINDOW_H
 #define TESTMAINWINDOW_H
 
+#include <QtTest/QtTest>
 
 class TestMainWindow : public QWidget
 {
     Q_OBJECT
-public:
-    explicit TestMainWindow(QWidget *parent = nullptr);
-
-signals:
 
 public slots:
+    void TestMainWindow();
+
+private slots:
+    void
 };
 
 #endif // TESTMAINWINDOW_H
