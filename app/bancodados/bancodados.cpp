@@ -4,8 +4,8 @@
 
 BancoDados::BancoDados(QObject *parent) : QObject(parent)
 {
-    this->setDatabaseName("database");
-    this->setDriver("QSQLITE");
+    //this->setDatabaseName("database");
+    //this->setDriver("QSQLITE");
 }
 
 BancoDados::~BancoDados() {

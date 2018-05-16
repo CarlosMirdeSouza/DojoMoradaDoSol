@@ -14,7 +14,8 @@ HEADERS += \
     dialogs/dialogadditem.h \
     dialogs/dialogadddoacao.h \
     dialogs/dialogaddmensalidade.h \
-    bancodados/bancodados.h
+    bancodados/bancodados.h \
+    testes/testmainwindow.h
 
 SOURCES += \
     main.cpp \
@@ -26,7 +27,8 @@ SOURCES += \
     dialogs/dialogadditem.cpp \
     dialogs/dialogadddoacao.cpp \
     dialogs/dialogaddmensalidade.cpp \
-    bancodados/bancodados.cpp
+    bancodados/bancodados.cpp \
+    testes/testmainwindow.cpp
 
 
 FORMS += \

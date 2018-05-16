@@ -42,6 +42,7 @@ protected:
 
 private:
     Ui::Contabilidade *ui;
+
     QImage image;
     QString filename;
     BancoDados db;

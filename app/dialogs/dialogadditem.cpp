@@ -1,26 +1,41 @@
 #include "dialogs/dialogadditem.h"
 
-DialogAddItem::DialogAddItem(QWidget *parent) :
+DialogAddItem::DialogAddItem(QWidget *parent, int isAddTipoItem) :
     QDialog(parent), ui(new Ui::DialogAddItem)
 {
     ui->setupUi(this);
-    ui->lineEditData->setInputMask("00/00/0000");
     ui->lineEditValor->setInputMask("00000,00");
 
-    db.openDatabase();
 
-    // Agregando itens ao comboBox diretamente do BD
-    // Assim o usuario pode modificar os tipos de itens
-    QSqlTableModel table;
-    table.setTable("Item");
-    table.select();
-    QList<QString> tipoItens;
-    for (int i = 0; i <= table.rowCount(); i++){
-        tipoItens.append(table.record(i).value("name").toString());
+    if(isAddTipoItem == 1) {
+        ui->comboBoxTipoItem->hide();
+        ui->labelTipoItem->hide();
+        ui->labelData->hide();
+        ui->lineEditData->hide();
+        ui->labelTransacao->hide();
+        ui->comboBoxTransacao->hide();
+
+        QRect retaAtual = ui->verticalLayoutAddItem->geometry();
+        qInfo() << retaAtual;
+        QRect rect(100, 100, 100, 100);
+        ui->verticalLayoutAddItem->setGeometry(retaAtual);
+
+    } else {
+        ui->lineEditData->setInputMask("00/00/0000");
+
+        //db.openDatabase();
+
+        // Agregando itens ao comboBox diretamente do BD
+        QSqlTableModel table;
+        table.setTable("Item");
+        table.select();
+        QList<QString> tipoItens;
+        for (int i = 0; i <= table.rowCount(); i++){
+            tipoItens.append(table.record(i).value("name").toString());
+        }
+        ui->comboBoxTipoItem->addItems(tipoItens);
+
     }
-    ui->comboBoxTipoItem->addItems(tipoItens);
-
-
 }
 
 DialogAddItem::~DialogAddItem() {

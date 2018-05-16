@@ -16,12 +16,15 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Item</string>
+  </property>
+  <property name="locale">
+   <locale language="Portuguese" country="Brazil"/>
   </property>
   <property name="modal">
    <bool>true</bool>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="buttonBoxAddItem">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -49,7 +52,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="groupBoxAddItem">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -70,7 +73,7 @@
       <height>381</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayoutAddItem">
      <item>
       <widget class="QLabel" name="labelTipoItem">
        <property name="text">
@@ -161,7 +164,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonBoxAddItem</sender>
    <signal>accepted()</signal>
    <receiver>DialogAddItem</receiver>
    <slot>accept()</slot>
@@ -177,7 +180,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonBoxAddItem</sender>
    <signal>rejected()</signal>
    <receiver>DialogAddItem</receiver>
    <slot>reject()</slot>

@@ -1,8 +1,9 @@
 #include "mainwindow.h"
-#include "bancodados/bancodados.h"
+//#include "bancodados/bancodados.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), ui(new Ui::MainWindow), cadastro(new Cadastro), pesquisa(new Pesquisa),
+    QMainWindow(parent), ui(new Ui::MainWindow),
+    cadastro(new Cadastro), pesquisa(new Pesquisa),
     contabilidade(new Contabilidade), eventos(new Eventos)
 {
     ui->setupUi(this);

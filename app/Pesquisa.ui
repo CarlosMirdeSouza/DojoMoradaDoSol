@@ -20,6 +20,9 @@
    <iconset>
     <normaloff>icons/iconmonstr-magnifier-1-240.ico</normaloff>icons/iconmonstr-magnifier-1-240.ico</iconset>
   </property>
+  <property name="locale">
+   <locale language="Portuguese" country="Brazil"/>
+  </property>
   <widget class="QComboBox" name="comboBoxTipoPesquisa">
    <property name="geometry">
     <rect>

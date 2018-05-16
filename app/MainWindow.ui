@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dojo Morada Do Sol</string>
   </property>
+  <property name="locale">
+   <locale language="Portuguese" country="Brazil"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QMdiArea" name="mdiAreaMain">
     <property name="geometry">
