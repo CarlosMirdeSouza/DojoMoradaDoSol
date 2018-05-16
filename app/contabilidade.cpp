@@ -9,8 +9,6 @@
 // TODO: Modificar apagar item do contextMenu (Item/Mensalidade/Doacao)
 // TODO: Pequenos ajustes na gui para preencher todo o espaço
 
-
-
 Contabilidade::Contabilidade(QWidget *parent) :
     QWidget(parent), ui(new Ui::Contabilidade)
 {
@@ -58,6 +56,7 @@ void Contabilidade::contextMenuEvent(QContextMenuEvent *event)
             QAction *addTipoItemAct = new QAction(tr("Agregar tipo de item"), this);
             addTipoItemAct->setStatusTip(tr("Agrega um novo tipo de item"));
             connect(addTipoItemAct, &QAction::triggered, this, &Contabilidade::addTipoItem);
+            //QObject::connect(addTipoItemAct, &QAction::triggered, dialogAddItem, &DialogAddItem::slotAddTipoItem);
             menu.addAction(addTipoItemAct);
 
             QAction *modifyTipoItemAct = new QAction(tr("Modificar tipo de item"), this);
@@ -80,8 +79,8 @@ void Contabilidade::contextMenuEvent(QContextMenuEvent *event)
 #endif // QT_NO_CONTEXTMENU
 
 void Contabilidade::addItem() {
-    DialogAddItem dialog;
-    dialog.exec();
+    DialogAddItem *dialogAddItem = new DialogAddItem(this, 0);
+    dialogAddItem->exec();
 }
 
 void Contabilidade::addMensalidade() {
@@ -93,7 +92,8 @@ void Contabilidade::addDoacoes() {
 }
 
 void Contabilidade::addTipoItem() {
-
+    DialogAddItem *dialogAddItem = new DialogAddItem(this, 1);
+    dialogAddItem->exec();
 }
 
 void Contabilidade::modifyTipoItem() {
@@ -101,7 +101,7 @@ void Contabilidade::modifyTipoItem() {
 }
 
 void Contabilidade::deleteTipoItem() {
-    
+
 }
 
 void Contabilidade::on_pushButtonPesquisa_clicked()

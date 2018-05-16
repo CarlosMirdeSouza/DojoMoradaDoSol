@@ -84,17 +84,17 @@
    </item>
    <item>
     <property name="text">
-     <string>Mensalidade</string>
+     <string>Mensalidades</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Item</string>
+     <string>Itens</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Doação</string>
+     <string>Doações</string>
     </property>
    </item>
   </widget>
